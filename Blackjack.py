@@ -3,24 +3,19 @@ import random
 all_cards = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, "Jack", "Jack", "Jack", "Jack",
              "Queen", "Queen", "Queen", "Queen", "King", "King", "King", "King", "Ace", "Ace", "Ace", "Ace"]
 
-card1_value = str(random.choice(all_cards))
-all_cards.remove(card1_value)
+player_card1 = random.choice(all_cards)
+all_cards.remove(player_card1)
+player_card2 = random.choice(all_cards)
+all_cards.remove(player_card2)
 
-print(card1_value)
-
-if card1_value in range(2, 11):
-    print("Your first card is a " + str(card1_value) + ".")
-elif card1_value == 11:
-    print("Your first card is a Jack.")
-elif card1_value == 12:
-    print("Your first card is a Queen.")
-elif card1_value == 13:
-    print("Your first card is a King.")
-elif card1_value == 14:
-    print("Your first card is an Ace")
-
-
-
+if player_card1 == "Ace":
+    print("Your first card is an " + str(player_card1) + ".")
+else:
+    print("Your first card is a " + str(player_card1) + ".")
+if player_card2 == "Ace":
+    print("Your second card is an " + str(player_card2) + ".")
+else:
+    print("Your second card is a " + str(player_card2) + ".")
 
 #def start_game():
 #pass
