@@ -1,30 +1,31 @@
 import random
 
-all_cards = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, "Jack", "Jack", "Jack", "Jack",
-             "Queen", "Queen", "Queen", "Queen", "King", "King", "King", "King", "Ace", "Ace", "Ace", "Ace"]
+card_suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
+list_of_cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+deck = [(card, suit) for suit in card_suits for card in list_of_cards]
 
-player_card1 = random.choice(all_cards)
-all_cards.remove(player_card1)
-player_card2 = random.choice(all_cards)
-all_cards.remove(player_card2)
+#print(deck)
 
-if player_card1 == "Ace":
-    print("Your first card is an " + str(player_card1) + ".")
-else:
-    print("Your first card is a " + str(player_card1) + ".")
-if player_card2 == "Ace":
-    print("Your second card is an " + str(player_card2) + ".")
-else:
-    print("Your second card is a " + str(player_card2) + ".")
+def card_value(card):
+    if card == "Jack":
+        return 10
+    elif card == "Queen":
+        return 10
+    elif card == "King":
+        return 10
+    elif card == "Ace":
+        return 11
+    else:
+        return int((card))
 
-#def start_game():
-#pass
+#print (card_value("Jack"))
 
-#start = input("Hello and welcome to Jake's Casino! Right now, the only game you can play is Blackjack. To begin type \"Begin\": ")
+random.shuffle(deck)
 
-#while start != "Begin":
-    #start = input("Invalid input. Please type \"Begin\" to start the game: ")
-#if start == "Begin":
-    #start_game()
+player_cards = [deck.pop(), deck.pop()]
 
-      
+#print("You have a " + player_cards[0] + ".")
+#print("You have a " + player_cards[1] + ".")
+
+print("Your first card is: (player_cards[0])")
+
