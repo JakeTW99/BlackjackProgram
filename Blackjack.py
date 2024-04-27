@@ -3,7 +3,7 @@ import random
 card_suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
 list_of_cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
 deck = [(card, suit) for suit in card_suits for card in list_of_cards]
-
+dealer_choices = ["hit", "stand"]
 def card_value(card):
     if card[0] in ["Jack", "Queen", "King"]:
         return 10
@@ -16,8 +16,13 @@ random.shuffle(deck)
 
 player_cards = [deck.pop(), deck.pop()]
 player_cards_total = sum(card_value(card) for card in player_cards)
+dealer_cards = [deck.pop(), deck.pop()]
+dealer_cards_total = sum(card_value(card) for card in dealer_cards)
 
-print(player_cards)
+print("Your cards: " + str(player_cards))
+print("Dealer's cards: " + str(dealer_cards)) 
+
+print("The Dealer's total is " + str(dealer_cards_total) + ".")
 
 while True:
     if player_cards_total < 21:
@@ -32,13 +37,21 @@ while True:
             break
         else:
             print("Invalid input. Please type \"hit\" or \"stand\". ")
+    elif dealer_cards_total < player_cards_total and dealer_cards_total < 21:
+        dealer_cards.append(deck.pop())
+        print(dealer_cards[-1])
+        dealer_cards_total += card_value(dealer_cards[-1])
+        print("The Dealer's total is now " + str(dealer_cards_total) + ".")
+    elif dealer_cards_total == 21:
+        print("The Dealer has won!")
+        break
     elif player_cards_total == 21:
         print("Congratulations! You've won!")
         break
+    elif dealer_cards_total > 21:
+        print("The Dealer has bust!")
+        break
     elif player_cards_total > 21:
-        if ("Ace", 11) in player_cards:
-            player_cards_total -= 10
-            continue
-        else:
-            print("You have bust! Better luck next time!")
-            break
+        print("You have bust! Better luck next time!")
+        break
+        
