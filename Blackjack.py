@@ -29,7 +29,7 @@ while True:
         choice = input("Your total is " + str(player_cards_total) + ". Would you like to hit or stand?: ")
         if choice == "hit":
             player_cards.append(deck.pop())
-            print(player_cards[-1])
+            print("You've drawn a " + str(player_cards[-1]) + ".")
             player_cards_total += card_value(player_cards[-1])
             print("Your total is now " + str(player_cards_total) + ".")
         elif choice == "stand":
@@ -37,21 +37,31 @@ while True:
             break
         else:
             print("Invalid input. Please type \"hit\" or \"stand\". ")
-    elif dealer_cards_total < player_cards_total and dealer_cards_total < 21:
-        dealer_cards.append(deck.pop())
-        print(dealer_cards[-1])
-        dealer_cards_total += card_value(dealer_cards[-1])
-        print("The Dealer's total is now " + str(dealer_cards_total) + ".")
-    elif dealer_cards_total == 21:
-        print("The Dealer has won!")
-        break
-    elif player_cards_total == 21:
-        print("Congratulations! You've won!")
-        break
-    elif dealer_cards_total > 21:
-        print("The Dealer has bust!")
-        break
     elif player_cards_total > 21:
         print("You have bust! Better luck next time!")
         break
-        
+    elif player_cards_total == 21:
+        print("Nice! You've hit 21! Can the dealer do the same?")
+        break
+
+while True:
+    if player_cards_total > 21:
+        break
+    elif dealer_cards_total < player_cards_total:
+        dealer_cards.append(deck.pop())
+        print("The Dealer has drawn a " + str(dealer_cards[-1]) + ".")
+        dealer_cards_total += card_value(dealer_cards[-1])
+        print("The Dealer's total is now " + str(dealer_cards_total) + ".")
+    elif 21 >= dealer_cards_total > player_cards_total:
+        print("The Dealer has won this round. Better luck next time.")
+        break
+    elif dealer_cards_total > 21:
+        print("The Dealer has bust!")
+        if player_cards_total <= 21:
+            print("Congratulations! You've won!")
+            break
+        else:
+            break
+    elif dealer_cards_total == player_cards_total:
+        print("It's a tie. Try again?")
+        break
